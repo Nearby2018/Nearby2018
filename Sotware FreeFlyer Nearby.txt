@@ -1,0 +1,75 @@
+#include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <math.h>
+int main(int argc, char *argv[])
+{
+    setlocale (LC_ALL,"PORTUGUESE");
+
+    int vetorA[24]; // Number of response delay data
+    int i,A, maior=0;
+    int num1;
+    int vetValorErrado[24];
+    int countValorErrado = 0;
+    int vetC [24] = {13,11,11,15,13,11,11,15,13,11,11,15,13,11,11,15,13,11,11,15,13,11,11,15,}; //This numbers it's a simulation of the response delay DataBase of the spacecraft with no damages (Spacecraft Project)
+    int vetInserido[24]; // Response delay of points of the structure
+    int countPosicoesErradas = 0; // How much data was different of the Spacecraft Project
+    int calculoPosicoesErradas; // Dimension of the damage (cm)
+    int profundidade=0; // Bigger depth of the structure
+
+    for (i=0;i<24;i++){
+        printf("Response delay of the laser light: ");
+        scanf("%i",&vetInserido[i]);
+        int n = vetInserido[i];
+    }
+    system ("cls");
+    for (i=0; i<24; i++)
+    {
+        printf("\n Response delay of the laser light: %i  In position %i of the Spacecraft.", vetInserido[i],i); //Informar o valor
+
+        }
+    printf("\n \n");
+    for(i=0;i<24;i++)
+    {
+        if(vetInserido[i]>maior){
+            maior=vetInserido[i];
+        }
+    }
+    profundidade = maior - 13;
+    for (i=0; i<24; i++){
+        if(vetC[i]!=vetInserido[i]){
+                int vetProf=vetInserido[i]-vetC[i];
+                num1= i;
+            printf("\n Damage found on the position %i with a %d cm of depth.",i,vetProf);
+            countPosicoesErradas++;
+        }
+        else
+            printf("\n Not have damages on the %i position",i, vetInserido);
+        }
+         calculoPosicoesErradas = countPosicoesErradas *5;
+    printf("\n\n - The damage have a dimension of the %d meters. \n", calculoPosicoesErradas);
+    printf("\n - The highest damage is %d(±2)cm of depth. \n",profundidade);
+
+        if(countPosicoesErradas<4){
+            printf("\n\n - Light damages. \n");
+        }
+        if (countPosicoesErradas>=4 && countPosicoesErradas<=10){
+            printf("\n - Moderated damages. \n");
+        }
+        if (countPosicoesErradas>10){
+            printf("\n - Serious damages. \n");
+        }
+
+        if(profundidade<6){
+            printf("\n - Light depth of the damages. Everything it's okay! \n");
+        }
+        if(profundidade>=6 && profundidade<=15){
+            printf("\n - Moderated depth of the damages. Please, attention! \n");
+        }
+        if(profundidade>15){
+            printf("\n - Serious depth of the damages. (Houston, we have a BIG problem!)\n");
+        }
+
+    return 0;
+}
